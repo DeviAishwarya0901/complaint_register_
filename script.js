@@ -14,18 +14,36 @@ function logout() {
 function submitComplaint() {
 
     let name = document.getElementById("name").value;
-    let complaint = document.getElementById("complaint").value;
+    let title = document.getElementById("title").value;
+    let description = document.getElementById("description").value;
 
     localStorage.setItem("name", name);
-    localStorage.setItem("complaint", complaint);
+    localStorage.setItem("title", title);
+    localStorage.setItem("description", description);
 
-    alert("Complaint Submitted");
+    alert("Complaint Submitted Successfully!");
+
+    window.location = "view.html";
 }
-function showComplaint() {
 
-    document.getElementById("name").innerHTML =
-        localStorage.getItem("name");
+function displayComplaints() {
 
-    document.getElementById("complaint").innerHTML =
-        localStorage.getItem("complaint");
+    let table = document.getElementById("tableBody");
+
+    table.innerHTML = `
+        <tr>
+            <td>${localStorage.getItem("name")}</td>
+            <td>${localStorage.getItem("title")}</td>
+            <td>${localStorage.getItem("description")}</td>
+        </tr>
+    `;
+}
+function deleteComplaint() {
+    localStorage.removeItem("name");
+    localStorage.removeItem("title");
+    localStorage.removeItem("description");
+
+    alert("Complaint Deleted!");
+
+    window.location = "complaint.html";
 }
